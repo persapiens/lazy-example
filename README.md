@@ -26,3 +26,5 @@ java -jar target/lazy-example-1.0-SNAPSHOT.jar
 1- It works if you disable spring session. You could check it removing spring-session-data-redis and spring-boot-starter-data-redis libraries in pom.xml.
 
 2- It works with spring session if primefaces datable DataModel is not lazy.
+
+3- The error happens with Primefaces 10.
