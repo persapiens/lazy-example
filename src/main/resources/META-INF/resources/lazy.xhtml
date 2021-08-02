@@ -29,8 +29,9 @@
                              value="#{lazyView.lazyModel}" 
                              selectionMode="single"
                              selection="#{lazyView.selectedCustomer}"
+                             lazy="true"
                              >
-                    <p:column headerText="Name" sortBy="#{customer.name}" filterBy="#{customer.name}">
+                    <p:column headerText="Name" filterBy="#{customer.name}">
                         <h:outputText value="#{customer.name}"/>
                     </p:column>
                     <p:column>

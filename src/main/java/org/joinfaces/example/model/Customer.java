@@ -16,24 +16,18 @@ public class Customer implements Serializable {
     public int id;
     public String name;
     public String company;
-    public Country country;
     public LocalDate date;
-    public CustomerStatus status;
     public int activity;
-    public Representative representative;
 
     public Customer() {
     }
 
-    public Customer(int id, String name, String company, Country country, LocalDate date, CustomerStatus status, int activity, Representative representative) {
+    public Customer(int id, String name, String company, LocalDate date, int activity) {
         this.id = id;
         this.name = name;
         this.company = company;
-        this.country = country;
         this.date = date;
-        this.status = status;
         this.activity = activity;
-        this.representative = representative;
     }
 
     public int getId() {
@@ -60,14 +54,6 @@ public class Customer implements Serializable {
         this.company = company;
     }
 
-    public Country getCountry() {
-        return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
-    }
-
     public LocalDate getDate() {
         return date;
     }
@@ -76,28 +62,12 @@ public class Customer implements Serializable {
         this.date = date;
     }
 
-    public CustomerStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(CustomerStatus status) {
-        this.status = status;
-    }
-
     public int getActivity() {
         return activity;
     }
 
     public void setActivity(int activity) {
         this.activity = activity;
-    }
-
-    public Representative getRepresentative() {
-        return representative;
-    }
-
-    public void setRepresentative(Representative representative) {
-        this.representative = representative;
     }
 
     @Override
@@ -109,14 +79,11 @@ public class Customer implements Serializable {
                 activity == customer.activity &&
                 Objects.equals(name, customer.name) &&
                 Objects.equals(company, customer.company) &&
-                Objects.equals(country, customer.country) &&
-                Objects.equals(date, customer.date) &&
-                status == customer.status &&
-                Objects.equals(representative, customer.representative);
+                Objects.equals(date, customer.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, company, country, date, status, activity, representative);
+        return Objects.hash(id, name, company, date, activity);
     }
 }
