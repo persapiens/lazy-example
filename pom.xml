@@ -69,6 +69,35 @@
         <dependency>
             <groupId>org.joinfaces</groupId>
             <artifactId>primefaces-spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.primefaces</groupId>
+                    <artifactId>primefaces</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.github.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>master-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.github.primefaces.primefaces</groupId>
+                    <artifactId>primefaces-showcase</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.github.primefaces.primefaces</groupId>
+                    <artifactId>primefaces-selenium-components</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.github.primefaces.primefaces</groupId>
+                    <artifactId>primefaces-selenium-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.github.primefaces.primefaces</groupId>
+                    <artifactId>primefaces-integration-tests</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.joinfaces</groupId>
@@ -99,7 +128,6 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
         </dependency>
-        <!-- Uncomment here to enable spring-session.
         <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session-data-redis</artifactId>
@@ -108,7 +136,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-        -->
     </dependencies>
 
     <build>
