@@ -99,7 +99,7 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
         </dependency>
-        <!-- UNCOMMENT here to enable spring-session and verify the error
+        <!-- Uncomment here to enable spring-session.
         <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session-data-redis</artifactId>
