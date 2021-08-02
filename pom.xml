@@ -69,41 +69,7 @@
         <dependency>
             <groupId>org.joinfaces</groupId>
             <artifactId>primefaces-spring-boot-starter</artifactId>
-            <!-- uncomment to enable primefaces snapshot
-            <exclusions>
-                <exclusion>
-                    <groupId>org.primefaces</groupId>
-                    <artifactId>primefaces</artifactId>
-                </exclusion>
-            </exclusions>
-            -->
         </dependency>
-        <!-- uncomment to enable primefaces snapshot
-        <dependency>
-            <groupId>com.github.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <version>master-SNAPSHOT</version>
-            <type>jar</type>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.github.primefaces.primefaces</groupId>
-                    <artifactId>primefaces-integration-tests</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.github.primefaces.primefaces</groupId>
-                    <artifactId>primefaces-showcase</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.github.primefaces.primefaces</groupId>
-                    <artifactId>primefaces-selenium-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.github.primefaces.primefaces</groupId>
-                    <artifactId>primefaces-selenium-components</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-         -->
         <dependency>
             <groupId>org.joinfaces</groupId>
             <artifactId>omnifaces1-spring-boot-starter</artifactId>
@@ -133,7 +99,7 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
         </dependency>
-        <!-- it works if spring-session-data-redis and spring-boot-starter-data-redis are removed -->
+        <!-- UNCOMMENT here to enable spring-session and verify the error
         <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session-data-redis</artifactId>
@@ -141,7 +107,8 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>             
+        </dependency>
+        -->
     </dependencies>
 
     <build>
