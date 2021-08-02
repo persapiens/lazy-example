@@ -1,89 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:m="http://joinfaces.org/tags"
-                template="/template.xhtml">
-    <ui:define name="content" >
-        <p:messages id="messages" showDetail="true" showSummary="false" escape="false"/>
-        
-        <div class="card">
-            <p:dataTable id="customerTable" var="customer"
-                         rows="10"
-                         paginator="true"
-                         rowsPerPageTemplate="5,10,15" 
-                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                         value="#{lazyView.lazyModel}" 
-                         selectionMode="single"
-                         selection="#{dtLazyView.selectedCustomer}"
-                         >
-                <p:column headerText="Name" sortBy="#{customer.name}" filterBy="#{customer.name}">
-                    <h:outputText value="#{customer.name}"/>
-                </p:column>
-                <p:column headerText="Country" sortBy="#{customer.country}" filterBy="#{customer.country}">
-                    <span class="flag flag-#{customer.country.code}" style="width: 30px; height: 20px"/>
-                    <h:outputText style="vertical-align: middle; margin-left: .5rem"
-                                  value="#{customer.country.name}"/>
-                </p:column>
-                <p:column headerText="Company" sortBy="#{customer.company}" filterBy="#{customer.company}">
-                    <h:outputText value="#{customer.company}"/>
-                </p:column>
-                <p:column headerText="Representative" sortBy="#{customer.representative}"
-                          filterBy="#{customer.representative}">
-                    <p:graphicImage name="images/avatar/#{customer.representative.image}" library="demo"
-                                    width="32" style="vertical-align: middle"/>
-                    <h:outputText style="vertical-align: middle; margin-left: .5rem"
-                                  value="#{customer.representative.name}"/>
-                </p:column>
-                <p:column>
-                    <p:commandLink
-                        title="Visualize"
-                        action="#{dtLazyView.startDetailAction}"
-                        value="Select" styleClass="ui-icon ui-icon-search"
-                        process="@this"
-                        update="@form" ajax="true">
-                        <f:setPropertyActionListener
-                            target="#{dtLazyView.selectedCustomer}"
-                            value="#{customer}" />
-                    </p:commandLink>                    
-                </p:column>
-            </p:dataTable>
+<html lang="en-us"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-            <p:dialog header="Customer Detail" widgetVar="customerDialog" modal="true" showEffect="fade"
-                      hideEffect="fade" resizable="false">
-                <p:outputPanel id="customerDetail" style="text-align:center;">
-                    <p:panelGrid columns="2" rendered="#{not empty dtLazyView.selectedCustomer}"
-                                 columnClasses="label,value">
+    <h:head>
+        <title>.:: Lazy Example ::.</title>
+        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+        <h:outputStylesheet library="css" name="example.css" />
+        <h:outputScript library="js" name="example.js" />
+    </h:head>
 
-                        <h:outputText value="Name:"/>
-                        <h:outputText value="#{dtLazyView.selectedCustomer.name}"/>
+    <h:body>
+        <h:form id="contentForm" prependId="false" enctype="multipart/form-data">
+            <div id="mainDiv" class="ui-fluid center">
+                <p:messages id="messages" showDetail="true" showSummary="true" escape="false"/>
 
-                        <h:outputText value="Country"/>
-                        <p:column>
-                            <span class="flag flag-#{dtLazyView.selectedCustomer.country.code}"
-                                  style="width: 30px; height: 20px"/>
-                            <h:outputText style="vertical-align: middle; margin-left: .5rem"
-                                          value="#{dtLazyView.selectedCustomer.country.name}"/>
-                        </p:column>
-
-                        <h:outputText value="Company:"/>
-                        <h:outputText value="#{dtLazyView.selectedCustomer.company}"/>
-
-                        <h:outputText value="Representative:"/>
-                        <p:column>
-                            <p:graphicImage name="images/avatar/#{dtLazyView.selectedCustomer.representative.image}"
-                                            library="demo"
-                                            width="32" style="vertical-align: middle"/>
-                            <h:outputText style="vertical-align: middle; margin-left: .5rem"
-                                          value="#{dtLazyView.selectedCustomer.representative.name}"/>
-                        </p:column>
-
-                    </p:panelGrid>
-                </p:outputPanel>
-            </p:dialog>
-        </div>
-    </ui:define>
-</ui:composition>
+                <h:outputText value="#{lazyView.selectedCustomer.name}" />
+                <p:dataTable id="customerTable" var="customer"
+                             rows="2"
+                             paginator="true"
+                             rowsPerPageTemplate="2,10,15" 
+                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                             value="#{lazyView.lazyModel}" 
+                             selectionMode="single"
+                             selection="#{lazyView.selectedCustomer}"
+                             >
+                    <p:column headerText="Name" sortBy="#{customer.name}" filterBy="#{customer.name}">
+                        <h:outputText value="#{customer.name}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandLink
+                            title="Visualize"
+                            action="#{lazyView.startDetailAction}"
+                            value="Select" styleClass="ui-icon ui-icon-search"
+                            process="@this"
+                            update="@form" ajax="true">
+                            <f:setPropertyActionListener
+                                target="#{lazyView.selectedCustomer}"
+                                value="#{customer}" />
+                        </p:commandLink>                    
+                    </p:column>
+                </p:dataTable>
+            </div>
+        </h:form>
+    </h:body>
+</html>
