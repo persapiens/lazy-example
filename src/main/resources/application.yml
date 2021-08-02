@@ -2,7 +2,7 @@ joinfaces:
   jsf:
     PROJECT_STAGE: Development
   primefaces:
-    theme: vela
+    theme: aristo
 spring:
   session:
     store-type: redis
