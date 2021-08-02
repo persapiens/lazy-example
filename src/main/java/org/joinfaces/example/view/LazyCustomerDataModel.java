@@ -59,7 +59,7 @@ public class LazyCustomerDataModel extends LazyDataModel<Customer> {
         // sort
         if (!sortBy.isEmpty()) {
             List<Comparator<Customer>> comparators = sortBy.values().stream()
-                    .map(o -> new LazySorter(o.getField(), o.getOrder()))
+                    .map(o -> new LazySorter(o.getSortField(), o.getSortOrder()))
                     .collect(Collectors.toList());
             Comparator<Customer> cp = ComparatorUtils.chainedComparator(comparators); // from apache
             customers.sort(cp);
@@ -76,12 +76,11 @@ public class LazyCustomerDataModel extends LazyDataModel<Customer> {
         boolean matching = true;
 
         for (FilterMeta filter : filterBy) {
-            FilterConstraint constraint = filter.getConstraint();
             Object filterValue = filter.getFilterValue();
 
             try {
-                Object columnValue = String.valueOf(o.getClass().getField(filter.getField()).get(o));
-                matching = constraint.isMatching(context, columnValue, filterValue, LocaleUtils.getCurrentLocale());
+                Object columnValue = String.valueOf(o.getClass().getField(filter.getColumnKey()).get(o));
+                matching = columnValue.equals(filterValue);
             } catch (ReflectiveOperationException e) {
                 matching = false;
             }
