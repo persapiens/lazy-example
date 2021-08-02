@@ -27,11 +27,11 @@
                              rowsPerPageTemplate="2,10,15" 
                              paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                              value="#{lazyView.lazyModel}" 
-                             lazy="true"
                              selectionMode="single"
                              selection="#{lazyView.selectedCustomer}"
+                             lazy="true"
                              >
-                    <p:column headerText="Name" sortBy="#{customer.name}" filterBy="#{customer.name}">
+                    <p:column headerText="Name" filterBy="#{customer.name}">
                         <h:outputText value="#{customer.name}"/>
                     </p:column>
                     <p:column>
