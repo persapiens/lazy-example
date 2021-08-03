@@ -4,9 +4,7 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <title>.:: Lazy Example ::.</title>
@@ -20,8 +18,9 @@
             <div id="mainDiv" class="ui-fluid center">
                 <p:messages id="messages" showDetail="true" showSummary="true" escape="false"/>
 
-                <h:outputText value="#{lazyView.selectedCustomer.name}" />
-                <p:dataTable id="customerTable" var="customer"
+                <h:outputText id="outputName" value="#{lazyView.selectedCustomer.name}" />
+                <p:dataTable id="customerTable"
+                             var="customer"
                              rows="2"
                              paginator="true"
                              rowsPerPageTemplate="2,10,15" 
@@ -31,16 +30,17 @@
                              selection="#{lazyView.selectedCustomer}"
                              lazy="true"
                              >
-                    <p:column headerText="Name" filterBy="#{customer.name}">
+                    <p:column id="customerNameColumn" headerText="Name" filterBy="#{customer.name}">
                         <h:outputText value="#{customer.name}"/>
                     </p:column>
-                    <p:column>
+                    <p:column id="customerLinkColumn">
                         <p:commandLink
                             title="Visualize"
                             action="#{lazyView.startDetailAction}"
                             value="Select" styleClass="ui-icon ui-icon-search"
                             process="@this"
-                            update="@form" ajax="true">
+                            update="outputName messages"
+                            ajax="true">
                             <f:setPropertyActionListener
                                 target="#{lazyView.selectedCustomer}"
                                 value="#{customer}" />
